@@ -33,10 +33,10 @@ jobs:
 
     - name: Build Docker Image
       run: |
-        docker build -t sonu65691/devtaskmaster:latest .
+        docker build -t sonu65691/testdevops/devtaskmaster:latest .
 
     - name: Trivy Image scan
-      run: trivy image --format table -o image.html sonu65691/devtaskmaster:latest
+      run: trivy image --format table -o image.html sonu65691/testdevops/devtaskmaster:latest
 
     - name: Login to Docker Hub
       uses: docker/login-action@v3
@@ -46,4 +46,4 @@ jobs:
 
     - name: Push Docker Image
       run: |
-          docker push sonu65691/devtaskmaster:latest
+          docker push sonu65691/testdevops/devtaskmaster:latest
