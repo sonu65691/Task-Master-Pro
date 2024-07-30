@@ -25,6 +25,12 @@ jobs:
     - name: Trivy FS scan
       run: trivy fs --format table -o fs.html .
 
+    - name: SonarQube Scan
+      uses: sonarsource/sonarqube-scan-action@master
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
 
@@ -34,11 +40,6 @@ jobs:
     - name: Build Docker Image
       run: |
         docker build -t sonu65691/devtaskmaster:latest .
-     - name: SonarQube Scan
-      uses: sonarsource/sonarqube-scan-action@master
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
     - name: Trivy Image scan
       run: trivy image --format table -o image.html sonu65691/devtaskmaster:latest
@@ -52,6 +53,3 @@ jobs:
     - name: Push Docker Image
       run: |
           docker push sonu65691/devtaskmaster:latest
-
-    
-   
