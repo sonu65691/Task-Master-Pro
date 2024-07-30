@@ -46,4 +46,4 @@ jobs:
 
     - name: Push Docker Image
       run: |
-          docker push ${{ vars.DOCKERHUB_USERNAME }}/devtaskmaster:latest
+          docker push sonu65691/devtaskmaster:latest
